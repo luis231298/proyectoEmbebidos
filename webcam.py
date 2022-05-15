@@ -28,7 +28,7 @@ def actualizacionIp(ip):
 
 def saveIp ():
     ip = str(input("Ingrese la ip a usar:"))
-    url = "http:/"+ip+":8080/video"
+    url = "https:/"+ip+":8080/video"
     return url
 
     
