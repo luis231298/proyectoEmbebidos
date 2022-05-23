@@ -14,12 +14,12 @@ header{
 }
 
 /*Pagina de Inicio*/
-.encabezadoInicio ul{
+.encabezadoPag ul{
     overflow: hidden; 
 }
 
 
-.nombreInicio{
+.nombrePag{
     color:antiquewhite;
     font-size: 50px; 
     height: 98px;
@@ -28,7 +28,7 @@ header{
     padding-left: 35px;
 }
 
-.encabezadoInicio ul li{
+.encabezadoPag ul li{
     list-style: none;
     float:left;
 }
