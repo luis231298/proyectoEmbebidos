@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head lang="es-ES">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Smart Home</title>        
+        <link rel="shortcut icon" type="x/image-icon" href="assets/smarthome.ico">        
+        <link rel="stylesheet" type="text/css" href="smartHome.css">
+        
+    </head>
+    
+    <body>
+
+        <header>
+            <div class="encabezadoPag">
+                <ul>
+                    <li class="imagPag"><img src="assets/foco.png" width="100" alt="#"></li>    
+                    <li class="nombrePag">&nbsp;&nbsp;&nbsp;Iluminación</li>
+                </ul>
+            </div>   
+        </header>
+        
+        <table class="salasIlum">
+            <tr class="salasNomb">
+                <td class="col1">Cocina</td>
+                <td class="col2">Garage</td>
+                <td class="col3">Pasillo</td>
+            </tr>
+
+            <tr class="apagadorIlum">
+                <td>
+                    <div class="wrap-toggle">
+                        <input type="checkbox" id="Cocina" class="offscreen"/>
+                        <label for="Cocina" class="switch"></label>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="wrap-toggle">
+                        <input type="checkbox" id="Garage" class="offscreen"/>
+                        <label for="Garage" class="switch"></label>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="wrap-toggle">
+                        <input type="checkbox" id="Pasillo" class="offscreen"/>
+                        <label for="Pasillo" class="switch"></label>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="controlIlum">
+                <td>
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="0" step="5">
+                    </div>
+                </td>
+
+                <td>
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="0" step="5">
+                    </div>
+                </td>
+                
+                <td>
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="0" step="5">
+                    </div>
+                </td>
+            </tr>
+
+
+        </table>
+
+        <footer>
+            <a href="SmartHome.html">Inicio</a>
+        </footer>
+           
+    </body>
+</html>

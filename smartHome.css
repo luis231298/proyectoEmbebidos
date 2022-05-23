@@ -1,8 +1,8 @@
+/*Formato General*/
 *{
-    margin: 0;
     padding: 0;
+    margin-top: 5px;
 }
-
 
 body{
     background-color: darkslategray;
@@ -13,11 +13,33 @@ header{
     margin: 0px auto; 
 }
 
-/*Pagina de Inicio*/
+footer{
+    width: 100px;
+    margin: 20px auto;
+    max-width:1000px; 
+    /*margin-top: 20px auto;*/
+}
+
+footer a{
+    padding: 5px 20px;
+    background: darkolivegreen;
+    display: block;
+    color: tan;
+    text-decoration: none;
+    font-size: 20px;
+    border-style: dotted;
+    border-radius: 20px;
+    text-align: center;
+}
+
+footer a:hover{
+    display: block;
+    background: teal;
+}
+
 .encabezadoPag ul{
     overflow: hidden; 
 }
-
 
 .nombrePag{
     color:antiquewhite;
@@ -32,7 +54,9 @@ header{
     list-style: none;
     float:left;
 }
+/*Fin Formato general*/
 
+/*Pagina de Inicio*/
 .menuInicio{
     width: 30%;
     margin: 20px auto;
@@ -46,7 +70,6 @@ header{
     list-style-position: initial;
     padding: 15px;
 }
-
 
 .menuInicio ul li a:hover{
     display: block;
@@ -65,6 +88,115 @@ header{
 }
 /*Fin Pagina de Inicio*/
 
+/*Pagina de Iluminacion*/
+
+.salasIlum{
+    width: 70%;
+    margin:2% auto;
+    border: 1px solid wheat;
+    border-collapse:collapse;
+}
+
+.salasIlum td{
+    margin: 2px;
+    padding: 10px;
+    border-style: double;
+    border-color: darkslategray;
+}
+
+.salasIlum .salasNomb td{
+    text-align: center;
+    padding: 15px 20px;
+    color: tan;
+    font-size: 25px;
+}
+
+.menuInicio ul li a{
+    padding: 15px 20px;
+    background: darkolivegreen;
+    display: block;
+    color: tan;
+    text-decoration: none;
+    font-size: 25px;
+    border-style: dotted;
+}
+
+.salasIlum .apagadorIlum td{
+    font-size: 20px;
+    text-align: center;
+}
+
+.salasIlum .col1{
+    width: 33%;
+    text-align: center;
+}
+
+.salasIlum .col2{
+    width: 34%;
+    text-align: center;
+}
+
+.salasIlum .col3{
+    width: 33%;
+    text-align: center;
+}
+/**/
+
+/*      Apagadores*/
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+    background-color: dimgray;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.switch::after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: aliceblue;
+    left: 5px;
+    top: 5px;
+    transition: all 0.4s;
+}
+
+input[type='checkbox']:checked + .switch::after{
+    transform: translate(40px);
+}
+
+input[type='checkbox']:checked + .switch{
+    background-color: #03a9f4;
+}
+
+.offscreen{
+    position: absolute;
+    left: -9999999px;
+}
 
 
+/*         control de luz*/
+.salasIlum .controlIlum td{
+    font-size: 20px;
+    text-align: center;
+    padding-top: 30px;
+}
 
+.slider-wrapper {
+    display: inline-block;
+    width: 20px;
+    height: 150px;
+    padding: 0;
+  }
+
+  .slider-wrapper input {
+    width: 150px;
+    height: 20px;
+    margin: 0;
+    transform-origin: 75px 75px;
+    transform: rotate(-90deg);
+  }
