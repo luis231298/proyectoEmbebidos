@@ -204,6 +204,7 @@ input[type='checkbox']:checked + .switch{
     border-style:solid;
     border-radius: 20px;
     color: rgb(49, 49, 49);
+    border-color: rgb(194, 140, 69);
 }
 
 .programaLuz ul li {
@@ -247,4 +248,47 @@ input[type='checkbox']:checked + .switch{
 .btnProg:hover{
     background: rgb(83, 68, 48);
     color: antiquewhite;
+}
+
+/*Inicio Pag Vigilancia*/
+.camara1, .camara2{
+    width: 300px;
+    margin: 20px auto;
+    max-width:1000px; 
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.camara1 ul li, .camara2 ul li {
+    list-style: none;
+    list-style-position: initial;
+    padding: 5px;
+}
+
+.camaras{
+    text-align: center;
+    color: tan;
+    font-size: 25px;
+}
+
+
+/*Inicio Pag Puertas*/
+.puertaPrincipal, .puertaGarage{
+    width: 300px;
+    margin: 20px auto;
+    max-width:1000px; 
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.puertaPrincipal ul li, .puertaGarage ul li {
+    list-style: none;
+    list-style-position: initial;
+    padding: 5px;
+}
+
+.puertas{
+    text-align: center;
+    color: tan;
+    font-size: 25px;
 }

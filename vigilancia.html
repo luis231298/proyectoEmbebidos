@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vigilancia</title>
-</head>
-<body>
-    <header>
-        <img src="assets/alarma.png">
-        <h1>Vigilancia</h1>
-    </header>
 
-    <main>
+    <head lang="es-ES">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vigilancia</title>
+        <link rel="shortcut icon" type="x/image-icon" href="assets/smarthome.ico">        
+        <link rel="stylesheet" type="text/css" href="smartHome.css">
 
-        <section>
-            <h2>Camara 1</h2>
-            <div class="switch-button">
-                <!-- Checkbox -->
-                <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
-                <!-- Botón -->
-                <label for="switch-label" class="switch-button__label"></label>
-            </div>
-        </section>
+    </head>
 
-        <section>
-            <h2>Camara 2</h2>
-            <div class="switch-button">
-                <!-- Checkbox -->
-                <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
-                <!-- Botón -->
-                <label for="switch-label" class="switch-button__label"></label>
-            </div>
-        </section>
-    </main>
+    <body>
 
-    <footer>
-        <a href="index.html">Inicio</a>
-    </footer>
-</body>
+        <header>
+            <div class="encabezadoPag">
+                <ul>
+                    <li class="imagPag"><img src="assets/camara.png" width="100" alt="#"></li>    
+                    <li class="nombrePag">&nbsp;&nbsp;&nbsp;Vigilancia</li>
+                </ul>
+            </div>   
+        </header>
+
+        <div class="camara1">
+            <ul>
+                <li class="camaras">Camara 1</li>
+                <li>
+                    <div class="wrap-toggle">
+                        <input type="checkbox" id="vCam1" class="offscreen"/>
+                        <label for="vCam1" class="switch"></label>
+                    </div>
+                </li>
+            </ul>
+        </div>  
+        <div class="camara2">
+            <ul>
+                <li class="camaras">Camara 2</li>
+                <li>
+                    <div class="wrap-toggle">
+                        <input type="checkbox" id="vCam2" class="offscreen"/>
+                        <label for="vCam2" class="switch"></label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        
+
+        <footer>
+            <a href="SmartHome.html">Inicio</a>
+        </footer>
+    </body>
 </html>
