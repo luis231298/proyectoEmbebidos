@@ -5,6 +5,7 @@
 # Encargado de modificar los valores del gui (luces)
 # 
 # Autor : Luna Perez José Luis
+#         Garcia Quezada Cristian Gabriel (deteccion y control timbre)
 # License: MIT
 #
 # ## ###############################################
@@ -16,6 +17,10 @@ from __future__ import print_function
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from gui_app import Ui_MainWindow
+
+from playsound import playsound
+from PyQt5 import QtCore, QtGui, QtWidgets
+import time
 
 class GUI_Main(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -61,16 +66,32 @@ def turned(dic,GUI):
         print("Entre 3")
         GUI.Cambio_pasillo(int(0))
         
+def detecciontimbre (dic, GUI):
+    if dic.get("timbre")=='True':
+        GUI.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreluz.png"))
+        return True
+    else:
+        GUI.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreapag.png"))
+        return False
+        
+def sonido (bool):
+    if bool == True:
+        time.sleep(3)
+        playsound('timbre.mp3')
+        print('playing sound using playsound')
+        
     
 if __name__ == "__main__":
-    dic = {'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False'}
+    dic = {'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False', 'timbre':'True'}
     app = QApplication(sys.argv)
     myWin = GUI_Main()
     turned(dic, myWin)
     print(int(myWin.pgb_pasillo.value()))
     print(int(myWin.pgb_garage.value()))
     print(int(myWin.pgb_cocina.value()))
+    son = detecciontimbre(dic, myWin)
     myWin.show()
+    sonido(son)
     # turned(dic, myWin)
     # myWin.show()
     sys.exit(app.exec_())
