@@ -1,12 +1,495 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html>
+
+  <head lang="es-ES">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Home</title>
-</head>
-<body>
+    <title>Smart Home</title>        
+    <link rel="shortcut icon" type="x/image-icon" href="assets/smarthome.ico">        
+    <style type="text/css">
+      html,body{
+          height: 100%;
+          background-color: darkslategray;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          font-family: system-ui;
+      }    
+
+      header{
+          width: 45%;
+          margin: 0px auto; 
+      }
+
+      .encabezadoPag ul{
+          overflow: hidden; 
+      }
+
+      .nombrePag{
+          color:antiquewhite;
+          font-size: 50px; 
+          height: 98px;
+          display: flex;
+          align-items: center;
+          padding-left: 35px;
+      }
+
+      .encabezadoPag ul li{
+          list-style: none;
+          float:left;
+      }
+
+      section{
+          padding-bottom: 5%;
+          align-items: center;
+      }
+
+      div.containerIluminacion{
+          display: grid;
+          grid-template: repeat(1,1fr)/repeat(3,1fr);
+      }
+
+      div.container{
+          display: grid;
+          grid-template: repeat(1,1fr)/repeat(2,1fr);
+      }
+
+      article{
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .collapsible {
+          color: rgb(63, 39, 39);
+          font-family: system-ui;
+          background: rgb(151, 132, 107);
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: solid;
+          border-color: antiquewhite;
+          outline: none;
+          font-size: 18px;
+          font-weight:600;
+          border-radius: 10px;
+      }
+
+      .collapsible.active {
+          background: rgb(68, 43, 10);
+          color: antiquewhite;
+          font-family: system-ui;
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+      }
+
+      .collapsible:hover{
+          font-family: system-ui;
+          background: rgb(83, 68, 48);
+          color: antiquewhite;
+      }
+      .collapsible:after {
+          color: cornsilk;
+          font-family: system-ui;
+          content: '\02795';
+          font-size: 13px;
+          float: right;
+          margin-left: 5px;
+      }
+
+      .collapsible.active:after {
+          content: "\2796";
+      }
+
+      .content, .contentVigilancia {
+          border-color: rgb(138, 111, 75);
+          color: rgb(63, 39, 39);
+          display: none;
+          border-style: solid;
+          width:100%;
+          background-color: antiquewhite;
+          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 10px;
+      }
+
+
+      /*
+      .content {
+          display: none;
+          padding: 6px 12px;
+          border-top: none;
+          width: 50px;
+          text-align: center;
+          background-color: #2196F3;
+      }
+      */
+      .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+      }
+
+      .switch input { 
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      input:checked + .slider {
+          background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+      }
+      .slider.round {
+          border-radius: 34px;
+      }
+
+      .slider.round:before {
+          border-radius: 50%;
+      }
+
+      form{
+          display:grid;
+          place-content: center;
+      }
+
+      .contenido{
+          width: 35%;
+      }
+
+      .botonProgram{
+        border-radius: 50px;
+        border-style: solid;
+        border-width: 3px;
+        padding: 10px;
+        color: rgb(63, 39, 39);
+        font-size: 16px;
+        background: rgb(173, 139, 94);
+        border-color:  rgb(100, 75, 42);
+        
+      }
+
+      .botonProgram:hover{
+          background: rgb(83, 68, 48);
+          color: antiquewhite;
+      }
+
+      .botonProgram:active{
+          background: rgb(51, 42, 31);
+          color: rgb(204, 183, 157);
+      }
+
+
+    </style>
     
-</body>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="encabezadoPag">
+        <ul>
+          <li class="imagPag"><img src="assets/home.png" width="100" alt="#"></li>    
+          <li class="nombrePag">&nbsp;&nbsp;&nbsp;Smart Home</li>
+        </ul>
+      </div> 
+    </header>
+
+    <div class="contenido">
+      
+      <button type="button" class="collapsible">Iluminacion Interruptor</button>
+        <div class="content">
+          <section id="luces">
+            <div class="containerIluminacion">
+              
+              <article>
+                <h3>Cocina</h3>
+                <label class="switch">
+                  <input type="checkbox" name="cocina" onclick="getValues('iluminacion')">
+                  <span class="slider round"></span>
+                </label>
+              </article>                  
+              <article>
+                <h3>Garage</h3>
+                <label class="switch">
+                  <input type="checkbox" name="garage" onclick="getValues('iluminacion')">
+                  <span class="slider round"></span>
+                </label>
+              </article>                  
+              <article>
+                <h3>Pasillo</h3>
+                <label class="switch">
+                  <input type="checkbox" name="pasillo" onclick="getValues('iluminacion')">
+                  <span class="slider round"></span>
+                </label>
+              </article>
+            </div>
+          </section> 
+        
+        </div>
+        <br>
+        <br>
+
+
+      <button type="button" class="collapsible">Iluminacion Gradual</button>
+        <div class="content">
+          <section id="luces">
+            <div class="containerIluminacion">
+              <article>
+                <h3>Cocina</h3>
+                <div id="range">
+                  <input name="cocina" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                </div>
+              </article>
+              <article>
+                <h3>Garage</h3>
+                <div id="range">
+                  <input name="garage" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                </div>
+              </article>
+              <article>
+                <h3>Pasillo</h3>
+                <div id="range">
+                  <input name="pasillo" type="range" min="0" max="100" value="0" step ="5" onmouseup="mouseUp('luces')">
+                </div>
+              </article>  
+            </div>
+          </section> 
+        
+        </div>
+        <br>
+        <br>
+
+      <button type="button" class="collapsible">Programacion de Luz</button>
+        <div class="content">
+  
+          <section id="luces">
+              <form name="formulario" method="post" action="send()">
+                <label>
+                  <br>
+                  <strong>Fecha:</strong>
+                  <input type="date" name="fecha" step="1" />
+                </label>
+                <br>
+                <label>
+                  <strong>Hora:</strong>
+                  <input type="time" name="hora" min="00:00" max="24:00" step="3600"/>
+                </label>
+                <br>
+                <button type="button" name="luces" onclick="getValuesProgrammed(this.name)" class="botonProgram">
+                  <strong class="programaLuz">Programar</strong>
+                </button>
+              </form>
+          </section> 
+        
+        </div>
+        <br>
+        <br>
+
+      <button type="button" class="collapsible">Vigilancia</button>
+        <div class="content">
+          <section id="vigilancia">
+            <div class="container">
+
+              <article>
+                  <h3>Camara 1</h3>
+                  <label class="switch">
+                    <input type="checkbox" name="cam1" onclick="getValues('vigilancia')">
+                    <span class="slider round"></span>
+                  </label>
+              </article>
+              <article>
+                <h3>Camara 2</h3>
+                <label class="switch">
+                  <input type="checkbox" name="cam2" onclick="getValues('vigilancia')">
+                  <span class="slider round"></span>
+                </label>
+              </article>
+                                  
+            </div>                
+          </section>  
+        </div>       
+        <br>
+        <br>   
+          
+
+      <button type="button" class="collapsible">Puertas</button>
+        <div class="content">
+          <section id="puertas">
+            <div class="container">
+
+              <article>
+                <h3>Principal</h3>
+                <label class="switch">
+                  <input type="checkbox" name="principal" onclick="getValues('puertas')">
+                  <span class="slider round"></span>
+                </label>
+              </article>
+              <article>
+                <h3>Garage</h3>
+                <label class="switch">
+                  <input type="checkbox" name="garage" onclick="getValues('puertas')">
+                  <span class="slider round"></span>
+                </label>
+              </article>
+                                  
+            </div>                
+          </section>  
+        </div> 
+        <br>
+        <br>
+    </div>
+  </body>
 </html>
+
+<script>
+
+  var response = {}
+  var datos = {}
+  var fecha = new Date();
+
+  var setFecha = document.querySelector("input[name=fecha]");
+  setFecha.min = fecha.getFullYear()+'-'+(fecha.getMonth()+1)+'-'+'0'+fecha.getDate();
+  setFecha.value = fecha.toLocaleDateString()
+
+  var setHora = document.querySelector("input[name=hora]");
+  setHora.value = fecha.toLocaleTimeString().slice(0,5);
+
+
+  /**
+  *Función que envía a los componentes la información con los valores de los sliders de la página web que no estén inhabilitados
+  *
+  *@params {event} string con el nombre de la sección con la que se tuvo interacción
+  *@return void
+  **/
+  function mouseUp(event){        
+    response = {}
+    datos={}
+    var section = document.querySelector("section#"+event)
+    var inputs = section.querySelectorAll("input")
+    for (var i = 0; i < inputs.length; i++) {
+        var actual = inputs[i]
+        if(!actual.disabled){
+            datos[actual.name] = actual.value
+        }
+    }
+    response[event]=datos
+    submit(response)
+  }
+
+  /**
+  *Función que envía a los componentes la información con el estado de los switches de la página web que no estén inhabilitados
+  *
+  *@params {event} string con el nombre de la sección con la que se tuvo interacción
+  *@return void
+  **/
+  function getValues(event){
+    response = {}
+    datos={}
+    var section = document.querySelector("section#"+event)
+    var inputs = section.querySelectorAll("input")
+    for (var i = 0; i < inputs.length; i++) {
+        var actual = inputs[i]
+        if(!actual.disabled){
+            datos[actual.name] = actual.checked
+        }
+    }
+    response[event]=datos
+    console.log(response)
+    submit(response)
+  }
+
+    /**
+    *Función que envía un objeto con los valores programados
+    *
+    *@params {event} string con el nombre de la sección con la que se tuvo interacción
+    *@return void
+    **/
+
+    /**
+    *Función que envía la información a la interfaz del prototipo.
+    *
+    *@params {response} diccionario con la información a procesar en la interfaz
+    *@return void
+    **/
+  function submit(response){
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", window.location.href, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(response));
+
+  }
+
+    /**
+    *Función que controla los botones de clase Tab para la interfaz
+    *
+    *@params {evt} string con el nombre de la sección con la que se tuvo interacción
+    *@params {nombre} nombre de la etiqueta button seleccionada
+    *@return void
+    **/
+  function openTab(evt, nombre) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(nombre).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  }
+
+</script>
