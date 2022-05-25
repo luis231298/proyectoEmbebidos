@@ -79,10 +79,17 @@ def sonido (bool):
         time.sleep(3)
         playsound('timbre.mp3')
         print('playing sound using playsound')
+
+def manejoPuertas(dic,GUI):
+    if (dic.get("garage")=='False'):
+        GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
+    else:
+        GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
         
     
 if __name__ == "__main__":
     dic = {'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False', 'timbre':'True'}
+    dicPuertas ={'principal':'True','garage':'True'}
     app = QApplication(sys.argv)
     myWin = GUI_Main()
     turned(dic, myWin)
@@ -90,6 +97,7 @@ if __name__ == "__main__":
     print(int(myWin.pgb_garage.value()))
     print(int(myWin.pgb_cocina.value()))
     son = detecciontimbre(dic, myWin)
+    manejoPuertas(dicPuertas, myWin)
     myWin.show()
     sonido(son)
     # turned(dic, myWin)
