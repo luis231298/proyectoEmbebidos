@@ -20,12 +20,16 @@ import sys
 import json
 import magic
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from interfaz import detecciontimbre, sonido, GUI_Main, turnedOn, turned
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from gui_app import Ui_MainWindow
 
 # Nombre o dirección IP del sistema anfitrión del servidor web
-address = "192.168.137.1"
+address = "192.168.56.1"
 # Puerto en el cual el servidor estará atendiendo solicitudes HTTP
 # El default de un servidor web en produción debe ser 80
-port = 8020#puerto a usar
+port = 80#puerto a usar
 
 class WebServer(BaseHTTPRequestHandler):
     """Sirve cualquier archivo encontrado en el servidor"""
@@ -42,21 +46,47 @@ class WebServer(BaseHTTPRequestHandler):
     
     """Sirve el archivo de interfaz de usuario"""
     def _serve_ui_file(self):
-        if not os.path.isfile("user_interface.html"):
-            err = "user_interface.html not found."
+        if not os.path.isfile("index.html"):
+            err = "index.html not found."
             self.wfile.write(bytes(err, "utf-8"))
             print(err)
             return
         try:
-            with open("user_interface.html", "r") as f:
+            with open("index.html", "r") as f:
                 content = "\n".join(f.readlines())
         except:
-            content = "Error reading user_interface.html"
+            content = "Error reading index.html"
         self.wfile.write(bytes(content, "utf-8"))
         
 
     def _parse_post(self, json_obj):
-        llaves=[]
+        llave=[]
+        dic=[]
+        app = QApplication(sys.argv)
+        myWin = GUI_Main()
+        print("Json")
+        print(json_obj)
+        
+        for key in json_obj.keys():
+            llave.append(key)
+        
+        if llave[0] == "vigilancia":
+            dic =   json_obj.get('vigilancia')
+        elif llave[0] == "puertas":
+            dic =   json_obj.get("puertas") 
+        elif llave[0] == "iluminacion":
+            dic = json_obj.get("iluminacion")
+            turnedOn(dic, myWin)
+        elif llave[0] == "lucesGradual":
+            dic = json_obj.get("lucesGradual")
+            turned(dic, myWin)
+        else:
+            print("No se encontro valor")
+        
+        print(dic)
+        myWin.show()
+        sys.exit(app.exec_())
+            
 
     """do_GET controla todas las solicitudes recibidas vía GET, es
     decir, páginas. Por seguridad, no se analizan variables que lleguen

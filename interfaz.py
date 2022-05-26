@@ -48,23 +48,9 @@ class GUI_Main(QMainWindow, Ui_MainWindow):
 information from the HTML about the lights, in this informations can see the status of
 the switch and their grade of atenuation."""    
 def turned(dic,GUI):
-    if dic.get("cocina") == 'True':
-        GUI.Cambio_cocina(int(dic.get('cocina')))
-    else:
-        print("entre 1")
-        GUI.Cambio_cocina(int(0))
-        
-    if dic.get("garage") == 'True':
-        GUI.Cambio_garage(int(dic.get('garage')))
-    else:
-        print("entre 2")
-        GUI.Cambio_garage(int(0))
-        
-    if dic.get("pasillo") == 'True':
-        GUI.Cambio_pasillo(int(dic.get('pasillo')))
-    else:
-        print("Entre 3")
-        GUI.Cambio_pasillo(int(0))
+    GUI.Cambio_cocina(int(dic.get('cocina')))    
+    GUI.Cambio_garage(int(dic.get('garage')))
+    GUI.Cambio_pasillo(int(dic.get('pasillo')))
         
 def detecciontimbre (dic, GUI):
     if dic.get("timbre")=='True':
