@@ -56,7 +56,7 @@ def turned(dic,GUI):
     GUI.Cambio_pasillo(int(dic.get('pasillo')))
         
 def detecciontimbre (dic, GUI):
-    if dic.get("timbre")=='True':
+    if dic.get("timbre")==True:
         GUI.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreluz.png"))
         return True
     else:
@@ -65,7 +65,6 @@ def detecciontimbre (dic, GUI):
         
 def sonido (bool):
     if bool == True:
-        time.sleep(3)
         playsound('timbre.mp3')
         print('playing sound using playsound')
         
@@ -126,15 +125,16 @@ def camaras(dic, GUI):
         
     
 if __name__ == "__main__":
-    dic = {'timbre':'True', 'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False'}
+    dic = {'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False'}
     dicPuertas ={'principal':'True','garage':'True'}
+    dicTimbre ={'timbre':'True'}
     app = QApplication(sys.argv)
     myWin = GUI_Main()
     turned(dic, myWin)
     print(int(myWin.pgb_pasillo.value()))
     print(int(myWin.pgb_garage.value()))
     print(int(myWin.pgb_cocina.value()))
-    son = detecciontimbre(dic, myWin)
+    son = detecciontimbre(dicTimbre, myWin)
     manejoPuertas(dicPuertas, myWin)
     myWin.show()
     sonido(son)
