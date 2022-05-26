@@ -20,7 +20,9 @@ from gui_app import Ui_MainWindow
 
 from playsound import playsound
 from PyQt5 import QtCore, QtGui, QtWidgets
+#from webcam import lecturaIp
 import time
+import cv2
 
 class GUI_Main(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -71,15 +73,15 @@ def manejoPuertas(dic,GUI):
     if (dic.get("garage") == False) or (dic.get("principal") == False):
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
     else:
-        print("Aqui")
+        #print("Aqui")
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
 
 def turnedOn(dic,GUI):
     if dic.get("cocina") == True:
-        print("Aqui")
+        #print("Aqui")
         GUI.Cambio_cocina(int(100))
     else:
-        print("aqui no")
+        #print("aqui no")
         GUI.Cambio_cocina(int(0))
         
     if dic.get("garage") == True:
@@ -93,6 +95,27 @@ def turnedOn(dic,GUI):
     else:
         #print("Entre 3")
         GUI.Cambio_pasillo(int(0))
+ 
+def lecturaIp():
+    mensaje=[]
+    with open("ip.txt") as archivo:
+        for linea in archivo:
+            mensaje.append(linea)
+    return mensaje        
+
+def camaras(dic, GUI):
+    ip=""
+    url=""
+    mensaje = lecturaIp()
+    if dic.get("cam1") == True: 
+        print()
+    elif dic.get("cam2") == True:
+        print()
+    print(mensaje)
+    cad = mensaje[0].rstrip()
+    print(cad)
+    mensaje.append(cad)
+    print(mensaje)
     
         
     
