@@ -84,10 +84,9 @@ class WebServer(BaseHTTPRequestHandler):
             turned(dic, myWin)
         elif llave[0] == "timbre":
             dic = json_obj.get("timbre")
-            if dic.get("principal") == True:
-                son = detecciontimbre(dic, myWin)
-                print(son)
-                sonido(son)
+            son = detecciontimbre(dic, myWin)
+            print(son)
+            sonido(son)
         else:
             print("No se encontro valor")
         
