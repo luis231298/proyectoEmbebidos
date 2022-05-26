@@ -48,19 +48,19 @@ class GUI_Main(QMainWindow, Ui_MainWindow):
 information from the HTML about the lights, in this informations can see the status of
 the switch and their grade of atenuation."""    
 def turned(dic,GUI):
-    if dic.get("cocina2") == 'True':
+    if dic.get("cocina") == 'True':
         GUI.Cambio_cocina(int(dic.get('cocina')))
     else:
         print("entre 1")
         GUI.Cambio_cocina(int(0))
         
-    if dic.get("garage2") == 'True':
+    if dic.get("garage") == 'True':
         GUI.Cambio_garage(int(dic.get('garage')))
     else:
         print("entre 2")
         GUI.Cambio_garage(int(0))
         
-    if dic.get("pasillo2") == 'True':
+    if dic.get("pasillo") == 'True':
         GUI.Cambio_pasillo(int(dic.get('pasillo')))
     else:
         print("Entre 3")
@@ -85,6 +85,27 @@ def manejoPuertas(dic,GUI):
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
     else:
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
+
+def turnedOn(dic,GUI):
+    if dic.get("cocina") == True:
+        print("Aqui")
+        GUI.Cambio_cocina(int(100))
+    else:
+        print("aqui no")
+        GUI.Cambio_cocina(int(0))
+        
+    if dic.get("garage") == True:
+        GUI.Cambio_garage(int(100))
+    else:
+        #print("entre 2")
+        GUI.Cambio_garage(int(0))
+        
+    if dic.get("pasillo") == True:
+        GUI.Cambio_pasillo(int(100))
+    else:
+        #print("Entre 3")
+        GUI.Cambio_pasillo(int(0))
+    
         
     
 if __name__ == "__main__":
