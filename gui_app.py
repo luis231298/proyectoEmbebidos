@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
         self.imgPuerta = QtWidgets.QLabel(self.centralwidget)
         self.imgPuerta.setGeometry(QtCore.QRect(10, 510, 161, 151))
         self.imgPuerta.setText("")
-        self.imgPuerta.setPixmap(QtGui.QPixmap("assets/cochera.jpg"))
+        self.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
         self.imgPuerta.setScaledContents(True)
         self.imgPuerta.setObjectName("imgPuerta")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
