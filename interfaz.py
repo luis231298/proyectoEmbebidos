@@ -5,7 +5,7 @@
 # Encargado de modificar los valores del gui (luces)
 # 
 # Autor : Luna Perez José Luis
-#         Garcia Quezada Cristian Gabriel (deteccion y control timbre)
+#         Garcia Quezada Cristian Gabriel (deteccion y control timbre, y camaras de vigilancia)
 # License: MIT
 #
 # ## ###############################################
@@ -115,9 +115,25 @@ def camaras(dic):
     if dic.get("cam1") == True: 
         cad = mensaje[0].rstrip()
         print(cad)
+        vig(cad)
     elif dic.get("cam2") == True:
         cad = mensaje[1].rstrip()
         print(cad)
+        #vig(cad)
+
+ def vig(ip):
+    url = "https://"+ip+":8080/video"
+    try:
+        capture = cv2.VideoCapture(url)
+        while(True):
+            _, frame = capture.read()
+            cv2.imshow('videoc', frame)
+            if cv2.waitKey(1) == ord("q"):
+                break
+        capture.release()
+        cv2.destroyAllWindows()
+    except Exception:
+        print("Error: url incorrecta")
         
     
 if __name__ == "__main__":
