@@ -20,7 +20,7 @@ import sys
 import json
 import magic
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from interfaz import detecciontimbre, sonido, GUI_Main, turnedOn, turned
+from interfaz import detecciontimbre, sonido, GUI_Main, turnedOn, turned, manejoPuertas
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from gui_app import Ui_MainWindow
@@ -74,6 +74,7 @@ class WebServer(BaseHTTPRequestHandler):
             dic =   json_obj.get('vigilancia')
         elif llave[0] == "puertas":
             dic =   json_obj.get("puertas") 
+            manejoPuertas(dic, myWin)
         elif llave[0] == "iluminacion":
             dic = json_obj.get("iluminacion")
             turnedOn(dic, myWin)
@@ -83,7 +84,7 @@ class WebServer(BaseHTTPRequestHandler):
         else:
             print("No se encontro valor")
         
-        print(dic)
+        #print(dic)
         myWin.show()
         sys.exit(app.exec_())
             

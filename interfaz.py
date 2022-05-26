@@ -29,6 +29,7 @@ class GUI_Main(QMainWindow, Ui_MainWindow):
         self.pgb_garage.setValue(0)
         self.pgb_cocina.setValue(0)
         self.pgb_pasillo.setValue(0)
+        #self.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreluz.png"))
         
     def Cambio_cocina(self,x):
         self.pgb_cocina.setValue(x)
@@ -67,9 +68,10 @@ def sonido (bool):
         print('playing sound using playsound')
 
 def manejoPuertas(dic,GUI):
-    if (dic.get("garage")=='False'):
+    if (dic.get("garage") == False) or (dic.get("principal") == False):
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
     else:
+        print("Aqui")
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
 
 def turnedOn(dic,GUI):
@@ -106,7 +108,7 @@ if __name__ == "__main__":
     son = detecciontimbre(dic, myWin)
     manejoPuertas(dicPuertas, myWin)
     myWin.show()
-    sonido(son)
+    #sonido(son)
     # turned(dic, myWin)
     # myWin.show()
     sys.exit(app.exec_())
