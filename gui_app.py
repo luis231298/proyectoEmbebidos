@@ -62,7 +62,7 @@ class Ui_MainWindow(object):
         self.imgTimbre = QtWidgets.QLabel(self.centralwidget)
         self.imgTimbre.setGeometry(QtCore.QRect(10, 320, 161, 151))
         self.imgTimbre.setText("")
-        self.imgTimbre.setPixmap(QtGui.QPixmap("assets/cochera.jpg"))
+        self.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreapag.jpg"))
         self.imgTimbre.setScaledContents(True)
         self.imgTimbre.setObjectName("imgTimbre")
         self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
