@@ -108,26 +108,23 @@ def lecturaIp():
             mensaje.append(linea)
     return mensaje        
 
-def camaras(dic, GUI):
+def camaras(dic):
     ip=""
     url=""
     mensaje = lecturaIp()
     if dic.get("cam1") == True: 
-        print()
+        cad = mensaje[0].rstrip()
+        print(cad)
     elif dic.get("cam2") == True:
-        print()
-    print(mensaje)
-    cad = mensaje[0].rstrip()
-    print(cad)
-    mensaje.append(cad)
-    print(mensaje)
-    
+        cad = mensaje[1].rstrip()
+        print(cad)
         
     
 if __name__ == "__main__":
     dic = {'cocina': '20', 'cocina2': 'True', 'garage': '45', 'garage2':'False', 'pasillo': '10', 'pasillo2': 'False'}
     dicPuertas ={'principal':'True','garage':'True'}
     dicTimbre ={'timbre':'True'}
+    dicCam ={'cam1':False,'cam2':True}
     app = QApplication(sys.argv)
     myWin = GUI_Main()
     turned(dic, myWin)
@@ -136,6 +133,7 @@ if __name__ == "__main__":
     print(int(myWin.pgb_cocina.value()))
     son = detecciontimbre(dicTimbre, myWin)
     manejoPuertas(dicPuertas, myWin)
+    camaras(dicCam)
     myWin.show()
     sonido(son)
     # turned(dic, myWin)
