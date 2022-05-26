@@ -80,7 +80,7 @@ class Ui_MainWindow(object):
         self.imgPuerta_2 = QtWidgets.QLabel(self.centralwidget)
         self.imgPuerta_2.setGeometry(QtCore.QRect(200, 510, 161, 151))
         self.imgPuerta_2.setText("")
-        self.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/cochera.jpg"))
+        self.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/principalClose.png"))
         self.imgPuerta_2.setScaledContents(True)
         self.imgPuerta_2.setObjectName("imgPuerta_2")
         MainWindow.setCentralWidget(self.centralwidget)

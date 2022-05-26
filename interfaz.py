@@ -70,11 +70,17 @@ def sonido (bool):
         print('playing sound using playsound')
         
 def manejoPuertas(dic,GUI):
-    if (dic.get("garage") == False) or (dic.get("principal") == False):
+    if (dic.get("garage") == True):
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
     else:
         #print("Aqui")
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
+    
+    if (dic.get("principal") == True):
+        GUI.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/principalOpen.png"))
+    else:
+        #print("Aqui")
+        GUI.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/principalClose.png"))
 
 def turnedOn(dic,GUI):
     if dic.get("cocina") == True:
