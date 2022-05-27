@@ -72,7 +72,7 @@ class WebServer(BaseHTTPRequestHandler):
         
         if llave[0] == "vigilancia":
             dic =   json_obj.get('vigilancia')
-            camaras(dic, myWin)
+            camaras(dic)
         elif llave[0] == "puertas":
             dic =   json_obj.get("puertas") 
             manejoPuertas(dic, myWin)

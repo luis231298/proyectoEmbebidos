@@ -121,7 +121,7 @@ def camaras(dic):
         print(cad)
         #vig(cad)
 
- def vig(ip):
+def vig(ip):
     url = "https://"+ip+":8080/video"
     try:
         capture = cv2.VideoCapture(url)
