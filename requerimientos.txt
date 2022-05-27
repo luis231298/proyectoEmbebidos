@@ -2,3 +2,4 @@ pyqt5 == 5.9.2
 python-magic-bin == 0.4.14
 pillow == 7.2.0
 playsound == 1.2.2
+opencv == 3.4.2
