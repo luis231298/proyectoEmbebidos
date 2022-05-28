@@ -1,11 +1,12 @@
 # !/usr/bin/env python3
 # ## ###############################################
 #
-# guiApp.py
+# interfaz.py
 # Encargado de modificar los valores del gui (luces)
 # 
-# Autor : Luna Perez José Luis
+# Autor : Luna Perez José Luis (luces)
 #         Garcia Quezada Cristian Gabriel (deteccion y control timbre, y camaras de vigilancia)
+#         Miranda Cortés Yak Balam
 # License: MIT
 #
 # ## ###############################################
@@ -20,10 +21,11 @@ from gui_app import Ui_MainWindow
 
 from playsound import playsound
 from PyQt5 import QtCore, QtGui, QtWidgets
-#from webcam import lecturaIp
 import time
 import cv2
 
+"""GUI_Main Inicia la interfaz gráfica ademas de contener funciones que ocuparemos
+en otras funciones."""
 class GUI_Main(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(GUI_Main, self).__init__(parent)
@@ -31,7 +33,6 @@ class GUI_Main(QMainWindow, Ui_MainWindow):
         self.pgb_garage.setValue(0)
         self.pgb_cocina.setValue(0)
         self.pgb_pasillo.setValue(0)
-        #self.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreluz.png"))
         
     def Cambio_cocina(self,x):
         self.pgb_cocina.setValue(x)
@@ -47,14 +48,17 @@ class GUI_Main(QMainWindow, Ui_MainWindow):
             if type(widget) == GUI_Main:
                 widget.close()
 
-"""Function turned: In this function take a dicitionary, contains
-information from the HTML about the lights, in this informations can see the status of
-the switch and their grade of atenuation."""    
+"""turned Encargada de poner el valor de las luces según lo recibido del Html."""    
 def turned(dic,GUI):
+    #Apartir de un valor entero proveniente del diccionario se cambiara el valor 
+    #de la barra de progreso
     GUI.Cambio_cocina(int(dic.get('cocina')))    
     GUI.Cambio_garage(int(dic.get('garage')))
     GUI.Cambio_pasillo(int(dic.get('pasillo')))
-        
+
+"""detecciontimbre Recibe de un diccionario un valor booleano, una vez obtenido
+cambiara la imagen que muestra que suena o no suena el timbre. Retorna un valor
+booleano según el estatus del timbre."""        
 def detecciontimbre (dic, GUI):
     if dic.get("timbre")==True:
         GUI.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreluz.png"))
@@ -62,45 +66,46 @@ def detecciontimbre (dic, GUI):
     else:
         GUI.imgTimbre.setPixmap(QtGui.QPixmap("assets/timbreapag.png"))
         return False
-        
+    
+"""sonido Recibe un valor booleano si es verdadero, el timbre fue tocado por lo cual
+sonará."""        
 def sonido (bool):
     if bool == True:
         playsound('timbre.mp3')
         print('playing sound using playsound')
-        
+
+"""manejoPuertas Recibe un diccionario, si algún valor valor es verdadero mostrara
+una imagen de una puerta abierta, en caso contrario se cerrara."""        
 def manejoPuertas(dic,GUI):
     if (dic.get("garage") == True):
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garage.png"))
     else:
-        #print("Aqui")
         GUI.imgPuerta.setPixmap(QtGui.QPixmap("assets/garageClose.png"))
     
     if (dic.get("principal") == True):
         GUI.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/principalOpen.png"))
     else:
-        #print("Aqui")
         GUI.imgPuerta_2.setPixmap(QtGui.QPixmap("assets/principalClose.png"))
 
+"""turnedOn Recibira un diccionario con valores booleanos que nos dirán si la luz
+esta encendida o no."""
 def turnedOn(dic,GUI):
     if dic.get("cocina") == True:
-        #print("Aqui")
         GUI.Cambio_cocina(int(100))
     else:
-        #print("aqui no")
         GUI.Cambio_cocina(int(0))
         
     if dic.get("garage") == True:
         GUI.Cambio_garage(int(100))
     else:
-        #print("entre 2")
         GUI.Cambio_garage(int(0))
         
     if dic.get("pasillo") == True:
         GUI.Cambio_pasillo(int(100))
     else:
-        #print("Entre 3")
         GUI.Cambio_pasillo(int(0))
- 
+        
+"""lecturaIP Leera de un txt los valores de ip guardados."""
 def lecturaIp():
     mensaje=[]
     with open("ip.txt") as archivo:
@@ -108,19 +113,21 @@ def lecturaIp():
             mensaje.append(linea)
     return mensaje        
 
+"""camaras Tomará el valor de una lista y tomara un valor de ip según corresponda 
+a la camara seleccionada, eliminando los saltos de línea."""
 def camaras(dic):
     ip=""
     url=""
     mensaje = lecturaIp()
     if dic.get("cam1") == True: 
         cad = mensaje[0].rstrip()
-        print(cad)
         vig(cad)
     elif dic.get("cam2") == True:
-        cad = mensaje[1].rstrip()
-        print(cad)
-        #vig(cad)
+        cad = mensaje[0].rstrip()
+        vig(cad)
 
+"""vig Desplegara las camaras con el ip de la camara y se desplegarán gracias al 
+paquete cv2."""
 def vig(ip):
     url = "https://"+ip+":8080/video"
     try:

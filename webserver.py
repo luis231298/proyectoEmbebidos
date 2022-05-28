@@ -58,18 +58,22 @@ class WebServer(BaseHTTPRequestHandler):
             content = "Error reading index.html"
         self.wfile.write(bytes(content, "utf-8"))
         
-
+    """_parse_post encargada de obtener el json y obtener las llaves  que contiene
+    el json, una vez obtenidas guardara en un diccionario para ser mandados a interfaz.py
+    donde se ejecuta lo relacionado a la interfaz y camaras"""
     def _parse_post(self, json_obj):
         llave=[]
         dic=[]
+        #Iniciamos la interfaz gráfica 
         app = QApplication(sys.argv)
         myWin = GUI_Main()
-        print("Json")
-        print(json_obj)
         
+        #Obtenemos todas las llaves que vengan con el json
         for key in json_obj.keys():
             llave.append(key)
         
+        #Usaremos un if que según que llave tenga se obtendrá la información 
+        #del json y se mandara a la función interfaz.py
         if llave[0] == "vigilancia":
             dic =   json_obj.get('vigilancia')
             camaras(dic)
@@ -85,12 +89,11 @@ class WebServer(BaseHTTPRequestHandler):
         elif llave[0] == "timbre":
             dic = json_obj.get("timbre")
             son = detecciontimbre(dic, myWin)
-            print(son)
             sonido(son)
         else:
             print("No se encontro valor")
         
-        #print(dic)
+        #Despliega la ventana
         myWin.show()
         sys.exit(app.exec_())
             
